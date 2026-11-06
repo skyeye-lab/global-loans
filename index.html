@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Loan · Lending</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: #f9fafc;
+      color: #1e293b;
+      line-height: 1.5;
+    }
+
+    /* ===== GLOBAL ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== HEADER / NAV ===== */
+    header {
+      background: white;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      border-bottom: 1px solid #eef2f6;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #0b2b4f;
+    }
+
+    .logo i {
+      color: #1e6f9f;
+      background: #e1f0fa;
+      padding: 8px 10px;
+      border-radius: 14px;
+      font-size: 1.6rem;
+    }
+
+    .logo span {
+      background: linear-gradient(135deg, #0b2b4f, #1e6f9f);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #2c3e50;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #1e6f9f;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #1e6f9f;
+      padding: 8px 22px;
+      border-radius: 40px;
+      color: #1e6f9f;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .btn-outline:hover {
+      background: #1e6f9f;
+      color: white;
+    }
+
+    .btn-primary {
+      background: #1e6f9f;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 1rem;
+      box-shadow: 0 8px 18px -8px rgba(30, 111, 159, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      background: #155b83;
+      transform: translateY(-1px);
+      box-shadow: 0 12px 22px -8px rgba(30, 111, 159, 0.5);
+    }
+
+    .btn-primary i {
+      font-size: 0.95rem;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 60px 0 70px;
+      background: linear-gradient(145deg, #ffffff 0%, #f3f9ff 100%);
+      border-bottom: 1px solid #e4edf5;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -1px;
+      color: #0b2b4f;
+      margin-bottom: 24px;
+    }
+
+    .hero-highlight {
+      color: #1e6f9f;
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 6px;
+      left: 0;
+      width: 100%;
+      height: 12px;
+      background: rgba(30, 111, 159, 0.15);
+      border-radius: 6px;
+      z-index: -1;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: #475569;
+      margin-bottom: 36px;
+      max-width: 90%;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .stat-item h3 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: #0b2b4f;
+    }
+
+    .stat-item p {
+      font-size: 0.9rem;
+      color: #64748b;
+      margin-bottom: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* hero card */
+    .hero-card {
+      background: white;
+      border-radius: 32px;
+      padding: 32px 28px;
+      box-shadow: 0 30px 50px -20px rgba(0, 30, 60, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .hero-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      color: #0b2b4f;
+    }
+
+    .input-group {
+      margin-bottom: 18px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 6px;
+      letter-spacing: 0.3px;
+    }
+
+    .input-group input, .input-group select {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid #dbe4ed;
+      border-radius: 16px;
+      font-size: 1rem;
+      background: #fafcff;
+      transition: 0.2s;
+    }
+
+    .input-group input:focus, .input-group select:focus {
+      outline: none;
+      border-color: #1e6f9f;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(30, 111, 159, 0.1);
+    }
+
+    .calc-result {
+      margin-top: 24px;
+      background: #f0f7fe;
+      padding: 18px 18px;
+      border-radius: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .calc-result span:first-child {
+      font-weight: 500;
+      color: #1e3b5c;
+    }
+
+    .calc-result .amount {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #0b2b4f;
+    }
+
+    /* ===== FEATURES ===== */
+    .section-title {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-title h2 {
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: #0b2b4f;
+      letter-spacing: -0.5px;
+    }
+
+    .section-title p {
+      color: #64748b;
+      font-size: 1.1rem;
+      margin-top: 8px;
+    }
+
+    .features {
+      padding: 70px 0;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 32px 26px;
+      border-radius: 28px;
+      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.05);
+      transition: 0.25s ease;
+      border: 1px solid #eef2f8;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 40px -12px rgba(30, 111, 159, 0.15);
+      border-color: #cbdbe9;
+    }
+
+    .feature-icon {
+      background: #e1f0fa;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .feature-icon i {
+      font-size: 1.8rem;
+      color: #1e6f9f;
+    }
+
+    .feature-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: #0b2b4f;
+    }
+
+    .feature-card p {
+      color: #475569;
+      font-size: 0.98rem;
+    }
+
+    /* ===== HOW IT WORKS ===== */
+    .how {
+      padding: 40px 0 70px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .step-item {
+      background: white;
+      border-radius: 24px;
+      padding: 28px 16px;
+      box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.04);
+      border: 1px solid #eef2f8;
+    }
+
+    .step-num {
+      background: #1e6f9f;
+      color: white;
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.3rem;
+      margin: 0 auto 20px;
+    }
+
+    .step-item h4 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #0b2b4f;
+    }
+
+    .step-item p {
+      color: #64748b;
+      font-size: 0.92rem;
+    }
+
+    /* ===== CTA SECTION ===== */
+    .cta-section {
+      background: linear-gradient(120deg, #0b2b4f, #134e6f);
+      border-radius: 48px;
+      padding: 56px 40px;
+      margin: 30px 0 70px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+    }
+
+    .cta-section h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .cta-section p {
+      font-size: 1.05rem;
+      opacity: 0.85;
+      margin-top: 8px;
+    }
+
+    .cta-section .btn-primary {
+      background: white;
+      color: #0b2b4f;
+      box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.3);
+    }
+
+    .cta-section .btn-primary:hover {
+      background: #f0f7ff;
+      transform: scale(1.02);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: white;
+      border-top: 1px solid #e2eaf2;
+      padding: 40px 0 28px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand p {
+      color: #475569;
+      margin: 16px 0 20px;
+      max-width: 280px;
+      font-size: 0.95rem;
+    }
+
+    .social i {
+      color: #64748b;
+      font-size: 1.3rem;
+      margin-right: 18px;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .social i:hover {
+      color: #1e6f9f;
+    }
+
+    .footer-col h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0b2b4f;
+      margin-bottom: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    .footer-col a {
+      display: block;
+      text-decoration: none;
+      color: #64748b;
+      font-size: 0.92rem;
+      margin-bottom: 12px;
+      transition: 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: #1e6f9f;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 28px;
+      border-top: 1px solid #eef2f6;
+      color: #94a3b8;
+      font-size: 0.88rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero-content p {
+        max-width: 100%;
+      }
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .cta-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .navbar {
+        flex-direction: column;
+        gap: 18px;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+      .hero-content h1 {
+        font-size: 2.4rem;
+      }
+      .feature-grid, .steps {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .hero-stats {
+        gap: 24px;
+      }
+      .cta-section h2 {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* feedback message (JS) */
+    .toast-msg {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #0b2b4f;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 60px;
+      font-weight: 500;
+      box-shadow: 0 16px 32px -10px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transition: 0.3s ease;
+      pointer-events: none;
+      z-index: 1000;
+      font-size: 0.95rem;
+    }
+
+    .toast-msg.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header>
+  <div class="container navbar">
+    <div class="logo">
+      <i class="fas fa-globe-americas"></i>
+      <span>Global Loan</span>
+    </div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <button class="btn-outline" id="loginBtn"><i class="fas fa-user-circle"></i> Sign in</button>
+    </div>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <h1>Borrow globally.<br>Repay locally.<br><span class="hero-highlight">Grow without borders.</span></h1>
+      <p>Access fair loans up to $50,000 with flexible terms. No hidden fees, no borders — just opportunity.</p>
+      <button class="btn-primary" id="applyNowBtn"><i class="fas fa-arrow-right"></i> Apply now</button>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <h3>$2.4B+</h3>
+          <p>Funded</p>
+        </div>
+        <div class="stat-item">
+          <h3>95k</h3>
+          <p>Borrowers</p>
+        </div>
+        <div class="stat-item">
+          <h3>4.9★</h3>
+          <p>Trustpilot</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- loan calculator card -->
+    <div class="hero-card" id="calculatorCard">
+      <h3><i class="fas fa-calculator" style="color:#1e6f9f; margin-right:8px;"></i> Quick estimate</h3>
+      <div class="input-group">
+        <label>Loan amount ($)</label>
+        <input type="number" id="loanAmount" value="15000" min="1000" max="50000" step="500">
+      </div>
+      <div class="input-group">
+        <label>Term (months)</label>
+        <select id="loanTerm">
+          <option value="12">12 months</option>
+          <option value="24" selected>24 months</option>
+          <option value="36">36 months</option>
+          <option value="48">48 months</option>
+          <option value="60">60 months</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>Interest rate (APR)</label>
+        <input type="text" id="interestRate" value="6.9%" readonly style="background:#eef6fe; font-weight:600;">
+      </div>
+      <div class="calc-result">
+        <span>Monthly payment</span>
+        <span class="amount" id="monthlyPayment">$672.30</span>
+      </div>
+      <p style="font-size:0.75rem; color:#6b7d99; margin-top:14px; text-align:center;">Representative example, no fees.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FEATURES ========== -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-title">
+      <h2>Why Global Loan?</h2>
+      <p>Built for modern borrowers, across 140+ countries</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+        <h3>Fast approval</h3>
+        <p>Get a decision in under 3 minutes. Funds sent within 24h.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+        <h3>No hidden fees</h3>
+        <p>Transparent pricing with a fixed APR. No surprises.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-globe"></i></div>
+        <h3>Global access</h3>
+        <p>Borrow from anywhere. Local support in 12 languages.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== HOW IT WORKS ========== -->
+<section class="how" id="how">
+  <div class="container">
+    <div class="section-title">
+      <h2>How it works</h2>
+      <p>From application to cash in 3 simple steps</p>
+    </div>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <h4>Check rate</h4>
+        <p>Use our calculator &amp; see your personalised offer</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <h4>Apply online</h4>
+        <p>Fill a 5-minute application, no paperwork</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <h4>Get funds</h4>
+        <p>Money directly to your bank account</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <h4>Flexible repay</h4>
+        <p>Choose or change your monthly due date</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<div class="container">
+  <div class="cta-section">
+    <div>
+      <h2>Ready to get started?</h2>
+      <p>Join 95,000+ borrowers who trust Global Loan.</p>
+    </div>
+    <button class="btn-primary" id="ctaApplyBtn"><i class="fas fa-hand-holding-usd"></i> Apply in 2 minutes</button>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="margin-bottom: 8px;">
+          <i class="fas fa-globe-americas"></i>
+          <span>Global Loan</span>
+        </div>
+        <p>Fair, fast and global lending. Since 2020.</p>
+        <div class="social">
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-linkedin-in"></i>
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-instagram"></i>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#">Personal loans</a>
+        <a href="#">Business loans</a>
+        <a href="#">Rates & fees</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About us</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#">Help center</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2025 Global Loan. All rights reserved. NMLS #1234567
+    </div>
+  </div>
+</footer>
+
+<!-- toast message -->
+<div id="toast" class="toast-msg">Thanks! We'll reach out shortly.</div>
+
+<script>
+  (function() {
+    // ---------- LOAN CALCULATOR ----------
+    const loanAmountInput = document.getElementById('loanAmount');
+    const loanTermSelect = document.getElementById('loanTerm');
+    const monthlyPaymentSpan = document.getElementById('monthlyPayment');
+
+    const annualRate = 0.069; // 6.9% APR
+
+    function calculateMonthlyPayment(principal, months, annualRate) {
+      const monthlyRate = annualRate / 12;
+      if (monthlyRate === 0) return principal / months;
+      const factor = Math.pow(1 + monthlyRate, months);
+      return principal * monthlyRate * factor / (factor - 1);
+    }
+
+    function updatePayment() {
+      let amount = parseFloat(loanAmountInput.value);
+      if (isNaN(amount) || amount < 1000) amount = 1000;
+      if (amount > 50000) amount = 50000;
+      // update input if out of range
+      if (amount !== parseFloat(loanAmountInput.value)) {
+        loanAmountInput.value = amount;
+      }
+
+      const months = parseInt(loanTermSelect.value, 10);
+      const monthly = calculateMonthlyPayment(amount, months, annualRate);
+      monthlyPaymentSpan.textContent = `$${monthly.toFixed(2)}`;
+    }
+
+    // initial calculation
+    updatePayment();
+
+    loanAmountInput.addEventListener('input', updatePayment);
+    loanTermSelect.addEventListener('change', updatePayment);
+
+    // clamp on blur
+    loanAmountInput.addEventListener('blur', function() {
+      let val = parseFloat(this.value);
+      if (isNaN(val) || val < 1000) this.value = 1000;
+      if (val > 50000) this.value = 50000;
+      updatePayment();
+    });
+
+    // ---------- TOAST / FEEDBACK ----------
+    const toast = document.getElementById('toast');
+    let toastTimeout;
+
+    function showToast(message) {
+      toast.textContent = message || "Thanks! We'll reach out shortly.";
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2800);
+    }
+
+    // ---------- BUTTON ACTIONS ----------
+    const applyNowBtn = document.getElementById('applyNowBtn');
+    const ctaApplyBtn = document.getElementById('ctaApplyBtn');
+    const loginBtn = document.getElementById('loginBtn');
+
+    applyNowBtn.addEventListener('click', () => {
+      showToast('📝 Application started! Check your email.');
+    });
+
+    ctaApplyBtn.addEventListener('click', () => {
+      showToast('🚀 Let’s go! Your pre-approval is on the way.');
+    });
+
+    loginBtn.addEventListener('click', () => {
+      showToast('🔐 Sign-in portal will open in a new window (demo).');
+    });
+
+    // ---------- (optional) card estimate update on Enter ----------
+    loanAmountInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        updatePayment();
+        showToast('Estimate updated ✓');
+      }
+    });
+
+    // also when clicking anywhere on calculator card, update payment
+    document.getElementById('calculatorCard').addEventListener('click', () => {
+      updatePayment();
+    });
+
+    // smooth scroll for anchor links (optional)
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === "#" || href === "") return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+  })();
+</script>
+
+</body>
+</html>
